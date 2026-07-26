@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Piervision AS — marin infrastruktursurvey</title>
+<meta name="description" content="Undervannsinspeksjon, sjøbunnkartlegging og tilstandsrapporter for kommuner, havner og VA-selskaper. FROSIO nivå 3-sertifisert. Én leverandør, én rapport.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚓</text></svg>">
+<style>
+  :root{
+    --dyp:#0b2a3d;      /* dypt marineblått */
+    --sjo:#12617d;      /* sjøblå */
+    --lys:#e8f1f5;
+    --tekst:#1b2733;
+    --dempet:#4a5b6b;
+    --kant:#d4e2ea;
+    --hvit:#fff;
+    --maks:1080px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font:400 17px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--tekst);background:var(--hvit);-webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:var(--maks);margin:0 auto;padding:0 24px}
+  h1,h2,h3{line-height:1.2;letter-spacing:-.02em}
+
+  /* ---------- topp ---------- */
+  header{
+    background:linear-gradient(160deg,var(--dyp) 0%,var(--sjo) 100%);
+    color:var(--hvit);padding:20px 0 88px;
+  }
+  .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:19px;letter-spacing:-.01em}
+  .logo span{opacity:.55;font-weight:400}
+  .hero{margin-top:72px;max-width:760px}
+  .hero h1{font-size:clamp(32px,5.2vw,52px);font-weight:700;margin-bottom:20px}
+  .hero p{font-size:clamp(18px,2.2vw,21px);opacity:.92;max-width:640px}
+  .kicker{
+    display:inline-block;font-size:13px;font-weight:600;letter-spacing:.09em;
+    text-transform:uppercase;opacity:.75;margin-bottom:18px;
+  }
+  .cta{
+    display:inline-block;margin-top:32px;background:var(--hvit);color:var(--dyp);
+    padding:14px 28px;border-radius:6px;text-decoration:none;font-weight:600;
+    transition:transform .15s ease,box-shadow .15s ease;
+  }
+  .cta:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(0,0,0,.18)}
+
+  /* ---------- seksjoner ---------- */
+  section{padding:72px 0}
+  section.alt{background:var(--lys)}
+  h2{font-size:clamp(25px,3.4vw,33px);margin-bottom:14px}
+  .ingress{color:var(--dempet);max-width:660px;margin-bottom:40px;font-size:18px}
+
+  /* ---------- kjernebudskap ---------- */
+  .kjerne{
+    border-left:4px solid var(--sjo);padding:6px 0 6px 26px;
+    font-size:clamp(20px,2.6vw,25px);line-height:1.45;max-width:720px;color:var(--dyp);
+  }
+  .kjerne strong{font-weight:700}
+
+  /* ---------- rutenett ---------- */
+  .rutenett{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(268px,1fr))}
+  .kort{
+    background:var(--hvit);border:1px solid var(--kant);border-radius:9px;padding:26px;
+  }
+  section.alt .kort{background:var(--hvit)}
+  .kort h3{font-size:18px;margin-bottom:9px;color:var(--dyp)}
+  .kort p{color:var(--dempet);font-size:15.5px}
+  .kort .ikon{font-size:23px;margin-bottom:13px;display:block}
+
+  /* ---------- kunder ---------- */
+  .kunder{display:grid;gap:1px;background:var(--kant);border:1px solid var(--kant);border-radius:9px;overflow:hidden}
+  .kunde{background:var(--hvit);padding:22px 24px;display:flex;gap:18px;align-items:baseline}
+  .kunde b{color:var(--dyp);min-width:190px;display:inline-block;font-size:16px}
+  .kunde span{color:var(--dempet);font-size:15.5px}
+
+  /* ---------- kompetanse ---------- */
+  .merker{display:flex;flex-wrap:wrap;gap:11px;margin-top:26px}
+  .merke{
+    background:var(--hvit);border:1px solid var(--kant);border-radius:999px;
+    padding:8px 17px;font-size:14.5px;color:var(--dyp);font-weight:500;
+  }
+
+  /* ---------- kontakt ---------- */
+  #kontakt{background:var(--dyp);color:var(--hvit)}
+  #kontakt h2{color:var(--hvit)}
+  #kontakt .ingress{color:rgba(255,255,255,.8)}
+  .epost{
+    display:inline-block;font-size:clamp(20px,3vw,27px);font-weight:600;
+    color:var(--hvit);text-decoration:none;border-bottom:2px solid rgba(255,255,255,.35);
+    padding-bottom:3px;transition:border-color .15s ease;
+  }
+  .epost:hover{border-color:var(--hvit)}
+  .org{margin-top:34px;font-size:14.5px;color:rgba(255,255,255,.6)}
+
+  footer{background:var(--dyp);color:rgba(255,255,255,.5);font-size:14px;
+    padding:26px 0;border-top:1px solid rgba(255,255,255,.12)}
+  footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  footer a{color:rgba(255,255,255,.65)}
+
+  @media (max-width:600px){
+    header{padding-bottom:64px}
+    .hero{margin-top:48px}
+    section{padding:54px 0}
+    .kunde{flex-direction:column;gap:5px}
+    .kunde b{min-width:0}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="logo">⚓ Piervision <span>AS</span></div>
+
+    <div class="hero">
+      <span class="kicker">Marin infrastruktursurvey</span>
+      <h1>Dokumentert tilstand på det du eier under vann</h1>
+      <p>
+        Undervannsinspeksjon, sjøbunnkartlegging og tilstandsrapporter for kommuner,
+        havner og VA-selskaper. Én leverandør, én rapport, ett kontaktpunkt.
+      </p>
+      <a class="cta" href="#kontakt">Ta kontakt</a>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <p class="kjerne">
+      Kaier, moloer, brufundamenter og sjøledninger forfaller der ingen ser det.
+      <strong>ROV-en er verktøyet. Rapporten er produktet.</strong>
+      Tilstandshistorikken er verdien — år etter år, på samme objekt.
+    </p>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <h2>Hva vi leverer</h2>
+    <p class="ingress">
+      Komplett marin infrastruktursurvey. Du slipper å koordinere ROV-pilot,
+      ingeniør, rapportforfatter og kartlegger hver for seg.
+    </p>
+
+    <div class="rutenett">
+      <div class="kort">
+        <span class="ikon">🎥</span>
+        <h3>Visuell undervannsinspeksjon</h3>
+        <p>ROV med 4K video og foto. Full dokumentasjon av tilstand under vannlinjen.</p>
+      </div>
+      <div class="kort">
+        <span class="ikon">🗺️</span>
+        <h3>Sjøbunnkartlegging</h3>
+        <p>Bathymetri med singlebeam eller multibeam. 3D-modell av bunnforholdene.</p>
+      </div>
+      <div class="kort">
+        <span class="ikon">📋</span>
+        <h3>Tilstandsrating og rapport</h3>
+        <p>NORSOK-basert logikk. Tilstandsgrad 1–5 per objekt, etterprøvbart dokumentert.</p>
+      </div>
+      <div class="kort">
+        <span class="ikon">🔧</span>
+        <h3>Vedlikeholdsplan</h3>
+        <p>Prioritert tiltaksliste med tidslinje og kostnadsestimat — klar for budsjettarbeid.</p>
+      </div>
+      <div class="kort">
+        <span class="ikon">🚁</span>
+        <h3>Dronesurvey over vann</h3>
+        <p>Luftfoto, fotogrammetri og termisk kartlegging av anlegget over vannlinjen.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Hvem vi jobber for</h2>
+    <p class="ingress">Direkte med den som eier anlegget — ingen mellomledd.</p>
+
+    <div class="kunder">
+      <div class="kunde">
+        <b>Kommuner</b>
+        <span>Kaianlegg, moloer, brufundamenter og sjøledninger. Lovpålagt formuesforvaltning med gjentakende behov.</span>
+      </div>
+      <div class="kunde">
+        <b>Havner</b>
+        <span>Tilstandsdokumentasjon og infrastrukturvedlikehold på hele anlegget.</span>
+      </div>
+      <div class="kunde">
+        <b>VA-selskaper</b>
+        <span>Sjøledninger, overløp og utslippspunkter — kritisk infrastruktur som sjelden inspiseres systematisk.</span>
+      </div>
+      <div class="kunde">
+        <b>Forsikring og meglere</b>
+        <span>Tilstandsvurdering ved kjøp, eierskifte og skadeoppgjør.</span>
+      </div>
+      <div class="kunde">
+        <b>Rederi og båteiere</b>
+        <span>Skroginspeksjon uten tørrdokk.</span>
+      </div>
+      <div class="kunde">
+        <b>Eiendomsutviklere</b>
+        <span>Brygger, kaier og kystanlegg — dokumentert tilstand før og etter tiltak.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <h2>Kompetansen bak</h2>
+    <p class="ingress">
+      Over 30 år med inspeksjon og vedlikehold av offshore-installasjoner i Nordsjøen —
+      brukt på marin infrastruktur langs kysten.
+    </p>
+
+    <div class="rutenett">
+      <div class="kort">
+        <h3>FROSIO nivå 3 — NS 476</h3>
+        <p>Sertifisert inspektør etter NS 476, godkjent for inspeksjon mot ISO-standardene og NORSOK. Rapportene har kontraktuell gyldighet hos operatørene i Nordsjøen.</p>
+      </div>
+      <div class="kort">
+        <h3>Akkreditert sertifisering</h3>
+        <p>FROSIO er akkreditert av Norsk Akkreditering etter ISO 17024 (PERS 006). Sertifiseringen er ikke et kursbevis — den er en akkreditert personellsertifisering.</p>
+      </div>
+      <div class="kort">
+        <h3>Anerkjente standarder</h3>
+        <p>Tilstandsvurdering etter NORSOK og ISO — de samme standardene som brukes på offshore-installasjoner, ikke et hjemmesnekret system.</p>
+      </div>
+      <div class="kort">
+        <h3>ROV og drone</h3>
+        <p>Under og over vannlinjen i samme oppdrag. Ett anlegg, én gjennomgang, én rapport.</p>
+      </div>
+    </div>
+
+    <div class="merker">
+      <span class="merke">FROSIO nivå 3 — NS 476</span>
+      <span class="merke">NORSOK M-501</span>
+      <span class="merke">ISO 12944</span>
+      <span class="merke">ISO 8501</span>
+      <span class="merke">CUI-programmer</span>
+      <span class="merke">ROV-operasjon</span>
+      <span class="merke">Dronesurvey</span>
+    </div>
+  </div>
+</section>
+
+<section id="kontakt">
+  <div class="wrap">
+    <h2>Ta kontakt</h2>
+    <p class="ingress">
+      Lurer du på tilstanden på et kaianlegg, en molo eller en sjøledning?
+      Send en e-post, så tar vi en prat om hva som skal til.
+    </p>
+    <a class="epost" href="mailto:post@piervision.no">post@piervision.no</a>
+    <p class="org">Piervision AS · Org.nr 925 511 552 · Arendal, Agder</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Piervision AS</span>
+    <span><a href="mailto:post@piervision.no">post@piervision.no</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
